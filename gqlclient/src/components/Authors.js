@@ -1,33 +1,33 @@
-import { useMutation } from '@apollo/client'
-import { useState } from 'react'
-import { UPDATE_AUTHOR, ALL_AUTHORS } from './queries'
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
+import { UPDATE_AUTHOR, ALL_AUTHORS } from "./queries";
 
 const Authors = (props) => {
-  const [name, setName] = useState(props.authors[0].name)
-  const [born, setBorn] = useState(0)
+  const [name, setName] = useState(props.authors[0].name);
+  const [born, setBorn] = useState(0);
   const [updateAuthor] = useMutation(UPDATE_AUTHOR, {
     refetchQueries: [{ query: ALL_AUTHORS }],
     onError: (error) => {
-      console.log(error.graphQLErrors[0].message)
-    }
-  })
+      console.log(error.graphQLErrors[0].message);
+    },
+  });
 
   if (!props.show) {
-    return null
+    return null;
   }
-  const authors = props.authors
+  const authors = props.authors;
 
   const submit = (event) => {
-    event.preventDefault()
-    updateAuthor({ variables: { name, born } })
+    event.preventDefault();
+    updateAuthor({ variables: { name, born } });
 
-    setName(authors[0].name)
-    setBorn(0)
-  }
+    setName(authors[0].name);
+    setBorn(0);
+  };
 
   return (
-    <div>
-      <h2>authors</h2>
+    <div className="bg-blue-100">
+      <h2 className="text-3xl font-bold underline p-2">Authors</h2>
       <table>
         <tbody>
           <tr>
@@ -47,8 +47,10 @@ const Authors = (props) => {
       <h2>Set birthyear</h2>
       <form onSubmit={submit}>
         <select onChange={({ target }) => setName(target.value)}>
-          {authors.map(a => (
-            <option key={a.name} value={a.name}>{a.name}</option>
+          {authors.map((a) => (
+            <option key={a.name} value={a.name}>
+              {a.name}
+            </option>
           ))}
         </select>
         <div>
@@ -61,8 +63,8 @@ const Authors = (props) => {
         </div>
         <button type="submit">update author</button>
       </form>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default Authors
+export default Authors;

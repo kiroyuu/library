@@ -8,6 +8,7 @@ import {
   split,
 } from "@apollo/client";
 import { setContext } from "apollo-link-context";
+import "./index.css";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
