@@ -26,43 +26,72 @@ const Authors = (props) => {
   };
 
   return (
-    <div className="bg-blue-100">
+    <div className="bg-blue-100 ">
       <h2 className="text-3xl font-bold underline p-2">Authors</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>born</th>
-            <th>books</th>
-          </tr>
-          {authors.map((a) => (
-            <tr key={a.name}>
-              <td>{a.name}</td>
-              <td>{a.born}</td>
-              <td>{a.bookCount}</td>
+      <div className="md:flex block">
+        <table className="table-auto m-5">
+          <thead>
+            <tr>
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                author
+              </th>
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                born
+              </th>
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                books
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <h2>Set birthyear</h2>
-      <form onSubmit={submit}>
-        <select onChange={({ target }) => setName(target.value)}>
-          {authors.map((a) => (
-            <option key={a.name} value={a.name}>
-              {a.name}
-            </option>
-          ))}
-        </select>
-        <div>
-          born
-          <input
-            type="number"
-            value={born}
-            onChange={({ target }) => setBorn(parseInt(target.value))}
-          />
+          </thead>
+          <tbody>
+            {authors.map((a) => (
+              <tr key={a.name} className="bg-gray-100 border-b">
+                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {a.name}
+                </td>
+                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {a.born ? a.born : "-"}
+                </td>
+                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {a.bookCount}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="bg-blue-200 rounded-2xl m-5 px-5 py-4">
+          <h2 className="text-md font-medium text-gray-900 py-2 pb-4">
+            Set birthyear
+          </h2>
+          <form onSubmit={submit}>
+            <select
+              onChange={({ target }) => setName(target.value)}
+              className="p-1 rounded-md border border-gray-300"
+            >
+              {authors.map((a) => (
+                <option key={a.name} value={a.name}>
+                  {a.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex my-2">
+              <p className="text-sm font-medium text-gray-900 py-2">born</p>
+              <input
+                type="number"
+                value={born}
+                onChange={({ target }) => setBorn(parseInt(target.value))}
+                className="ml-2 border border-gray-300 rounded-md py-1 px-2"
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              update author
+            </button>
+          </form>
         </div>
-        <button type="submit">update author</button>
-      </form>
+      </div>
     </div>
   );
 };

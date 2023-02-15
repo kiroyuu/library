@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery, useApolloClient, useSubscription } from "@apollo/client";
 import { ALL_AUTHORS, ALL_BOOKS, BOOK_ADDED } from "./components/queries";
+import Navbar from "./components/navbar";
 
 import Authors from "./components/Authors";
 import Books from "./components/Books";
@@ -44,24 +45,8 @@ const App = () => {
   if (!token) {
     return (
       <div className="bg-blue-100 h-screen">
-        <div className="bg-blue-100 p-4 flex items-center">
-          <div className="pr-3">
-            <h2 className="text-xl font-bold">Library</h2>
-          </div>
-          <div className="flex-1">
-            <button
-              onClick={() => setPage("authors")}
-              className="mr-2 text-slate-800 hover:text-slate-500"
-            >
-              authors
-            </button>
-            <button
-              onClick={() => setPage("books")}
-              className="mr-2 text-slate-800 hover:text-slate-500"
-            >
-              books
-            </button>
-          </div>
+        <div className="bg-blue-300 p-4 flex items-center">
+          <Navbar page={page} setPage={setPage} />
           <div className="">
             <button
               onClick={() => setPage("login")}
