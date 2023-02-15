@@ -42,46 +42,37 @@ const App = () => {
     console.log("notify");
   };
 
-  if (!token) {
-    return (
-      <div className="bg-blue-100 h-screen">
-        <div className="bg-blue-300 p-4 flex items-center">
-          <Navbar page={page} setPage={setPage} />
-          <div className="">
+  return (
+    <div className="bg-blue-100 h-screen">
+      <div className="bg-blue-300 p-4 flex items-center justify-between">
+        <Navbar page={page} setPage={setPage} logged={token} />
+        <div className="">
+          {!token ? (
             <button
               onClick={() => setPage("login")}
               className="mr-2 text-slate-800 hover:text-slate-500"
             >
               login
             </button>
-          </div>
+          ) : (
+            <button
+              onClick={logout}
+              className="mr-2 text-slate-800 hover:text-slate-500"
+            >
+              logout
+            </button>
+          )}
         </div>
-        <Authors show={page === "authors"} authors={authors.data.allAuthors} />
-        <Books show={page === "books"} books={books.data.allBooks} />
-        <Login show={page === "login"} setToken={setToken} setError={notify} />
       </div>
-    );
-  }
-
-  return (
-    <div>
-      <div>
-        <button type="button" onClick={() => setPage("authors")}>
-          authors
-        </button>
-        <button onClick={() => setPage("books")}>books</button>
-        <button onClick={() => setPage("add")}>add book</button>
-        <button onClick={() => setPage("recommend")}>recommend</button>
-        <button type="button" onClick={logout}>
-          logout
-        </button>
-      </div>
-
       <Authors show={page === "authors"} authors={authors.data.allAuthors} />
       <Books show={page === "books"} books={books.data.allBooks} />
-      <NewBook show={page === "add"} />
       <Login show={page === "login"} setToken={setToken} setError={notify} />
-      <Recommend show={page === "recommend"} books={books.data.allBooks} />
+      {token && (
+        <>
+          <NewBook show={page === "add"} />
+          <Recommend show={page === "recommend"} />
+        </>
+      )}
     </div>
   );
 };

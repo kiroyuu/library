@@ -27,32 +27,37 @@ const Login = ({ show, setToken, setError }) => {
   };
 
   return (
-    <div className="bg-blue-200 p-3 w-2/3">
-      <form className="" onSubmit={submit}>
-        <div className="p-3 flex justify-between">
-          name
-          <input
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
-            className="rounded left-0"
-          />
-        </div>
-        <div className="p-3 flex justify-between">
-          password
-          <input
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-            type="password"
-            className="rounded"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          login
-        </button>
-      </form>
+    <div className="h-screen flex justify-center items-center">
+      <div className="bg-blue-200 p-3 w-2/3 rounded-2xl px-5 py-10 shadow-md">
+        <h2 className="text-3xl font-medium p-2 text-gray-700 text-center">
+          Login
+        </h2>
+        <form className="" onSubmit={submit}>
+          <div className="p-3 flex justify-between">
+            name
+            <input
+              value={username}
+              onChange={({ target }) => setUsername(target.value)}
+              className="rounded left-0"
+            />
+          </div>
+          <div className="p-3 flex justify-between">
+            password
+            <input
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+              type="password"
+              className="rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

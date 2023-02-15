@@ -27,7 +27,7 @@ const Authors = (props) => {
 
   return (
     <div className="bg-blue-100 ">
-      <h2 className="text-3xl font-bold underline p-2">Authors</h2>
+      <h2 className="text-3xl font-bold m-4 p-2 text-gray-700">Authors</h2>
       <div className="md:flex block">
         <table className="table-auto m-5">
           <thead>
